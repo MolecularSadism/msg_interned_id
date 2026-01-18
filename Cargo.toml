@@ -1,6 +1,6 @@
 [package]
 name = "msg_interned_id"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2024"
 authors = ["ffmulks <63452434+ffmulks@users.noreply.github.com>"]
 description = "Derive macro for generating interned string ID types with optional Bevy and serde integration"
@@ -19,8 +19,9 @@ quote = "1.0"
 syn = { version = "2.0", features = ["full", "parsing"] }
 
 [dev-dependencies]
-bevy = { workspace = true }
+# Use individual bevy sub-crates to avoid system dependencies (wayland, etc.)
+bevy_ecs = "0.17"
+bevy_reflect = "0.17"
+bevy_math = "0.17"
 serde = { version = "1.0", features = ["derive"] }
-
-[lints]
-workspace = true
+serde_json = "1.0"
