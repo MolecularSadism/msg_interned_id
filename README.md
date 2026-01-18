@@ -24,8 +24,8 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-msg_interned_id = "0.1"
-bevy = "0.16"
+msg_interned_id = "0.2"
+bevy = "0.17"
 ```
 
 ## Quick Start
@@ -204,7 +204,24 @@ Choose `InternedId` when you need the flexibility of strings with the performanc
 
 | `msg_interned_id` | Bevy |
 |-------------------|------|
+| 0.2               | 0.17 |
 | 0.1               | 0.16 |
+
+### Migration from 0.1 to 0.2
+
+The 0.2 release updates compatibility from Bevy 0.16 to Bevy 0.17. Key changes:
+
+- **Reflection API**: Updated to use Bevy 0.17's reflection system
+  - Removed deprecated `clone_value` method from `PartialReflect`
+  - Added `reflect_clone` method for proper cloning support
+- **No breaking changes** to the public API of generated types
+
+To migrate, simply update your `Cargo.toml`:
+
+```toml
+msg_interned_id = "0.2"
+bevy = "0.17"
+```
 
 ## License
 

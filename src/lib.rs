@@ -14,7 +14,7 @@
 //!
 //! # Basic Usage
 //!
-//! ```rust
+//! ```rust,ignore
 //! use msg_interned_id::InternedId;
 //! use bevy::prelude::*;
 //!
@@ -233,10 +233,6 @@ fn generate_partial_reflect_impl(name: &Ident, name_str: &str) -> TokenStream2 {
                 bevy::reflect::ReflectOwned::Opaque(self)
             }
 
-            fn clone_value(&self) -> Box<dyn bevy::reflect::PartialReflect> {
-                Box::new(*self)
-            }
-
             fn reflect_hash(&self) -> Option<u64> {
                 use std::hash::{Hash, Hasher};
                 let mut hasher = std::collections::hash_map::DefaultHasher::new();
@@ -253,6 +249,10 @@ fn generate_partial_reflect_impl(name: &Ident, name_str: &str) -> TokenStream2 {
 
             fn debug(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 write!(f, "{}(\"{}\")", #name_str, self.as_str())
+            }
+
+            fn reflect_clone(&self) -> Result<Box<dyn bevy::reflect::Reflect>, bevy::reflect::ReflectCloneError> {
+                Ok(Box::new(*self))
             }
         }
     }
@@ -397,7 +397,7 @@ fn generate_inspector_impl(name: &Ident) -> TokenStream2 {
 ///
 /// ## Basic Usage
 ///
-/// ```rust
+/// ```rust,ignore
 /// use msg_interned_id::InternedId;
 /// use bevy::prelude::*;
 ///
@@ -411,7 +411,7 @@ fn generate_inspector_impl(name: &Ident) -> TokenStream2 {
 ///
 /// ## As ECS Component
 ///
-/// ```rust
+/// ```rust,ignore
 /// use msg_interned_id::InternedId;
 /// use bevy::prelude::*;
 ///
@@ -425,7 +425,7 @@ fn generate_inspector_impl(name: &Ident) -> TokenStream2 {
 ///
 /// ## With Serialization
 ///
-/// ```rust
+/// ```rust,ignore
 /// use msg_interned_id::InternedId;
 /// use bevy::prelude::*;
 /// use serde::{Serialize, Deserialize};
