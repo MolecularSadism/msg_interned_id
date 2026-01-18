@@ -1,7 +1,7 @@
 [package]
 name = "msg_interned_id"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 authors = ["ffmulks <63452434+ffmulks@users.noreply.github.com>"]
 description = "Derive macro for generating interned string ID types with optional Bevy and serde integration"
 license = "MIT OR Apache-2.0"
