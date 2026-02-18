@@ -345,9 +345,9 @@ fn generate_reflection_meta_impls(name: &Ident, name_str: &str) -> TokenStream2 
 }
 
 /// Generate inspector UI implementation for dev feature.
+#[cfg(feature = "dev")]
 fn generate_inspector_impl(name: &Ident) -> TokenStream2 {
     quote! {
-        #[cfg(feature = "dev")]
         impl bevy_inspector_egui::inspector_egui_impls::InspectorPrimitive for #name {
             fn ui(
                 &mut self,
@@ -450,7 +450,10 @@ pub fn derive_interned_id(input: TokenStream) -> TokenStream {
     let partial_reflect = generate_partial_reflect_impl(name, &name_str);
     let reflect = generate_reflect_impl(name);
     let reflection_meta = generate_reflection_meta_impls(name, &name_str);
+    #[cfg(feature = "dev")]
     let inspector = generate_inspector_impl(name);
+    #[cfg(not(feature = "dev"))]
+    let inspector = quote! {};
 
     let expanded = quote! {
         #core

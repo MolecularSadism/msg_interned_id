@@ -24,8 +24,8 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-msg_interned_id = "0.2"
-bevy = "0.17"
+msg_interned_id = "0.3"
+bevy = "0.18"
 ```
 
 ## Quick Start
@@ -204,8 +204,29 @@ Choose `InternedId` when you need the flexibility of strings with the performanc
 
 | `msg_interned_id` | Bevy |
 |-------------------|------|
+| 0.3               | 0.18 |
 | 0.2               | 0.17 |
 | 0.1               | 0.16 |
+
+### Migration from 0.2 to 0.3
+
+The 0.3 release updates compatibility from Bevy 0.17 to Bevy 0.18. Key changes:
+
+- **No breaking changes** to the public API of generated types
+- **`dev` feature**: The optional `bevy-inspector-egui` inspector integration is now
+  gated behind a proper `dev` feature on this crate rather than emitting
+  `#[cfg(feature = "dev")]` into user code. Enable it with:
+
+  ```toml
+  msg_interned_id = { version = "0.3", features = ["dev"] }
+  ```
+
+To migrate, simply update your `Cargo.toml`:
+
+```toml
+msg_interned_id = "0.3"
+bevy = "0.18"
+```
 
 ### Migration from 0.1 to 0.2
 

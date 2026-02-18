@@ -7,15 +7,6 @@ mod bevy {
         pub mod intern {
             pub use bevy_ecs::intern::*;
         }
-        pub mod world {
-            pub use bevy_ecs::world::*;
-        }
-        pub mod system {
-            pub use bevy_ecs::system::*;
-        }
-        pub mod component {
-            pub use bevy_ecs::component::*;
-        }
     }
     pub mod reflect {
         pub use bevy_reflect::*;
@@ -139,6 +130,7 @@ mod standard_traits {
     }
 
     #[test]
+    #[allow(clippy::clone_on_copy)]
     fn test_clone() {
         let id1 = TestId::new("clone_test");
         let id2 = id1.clone();

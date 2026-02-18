@@ -4,3 +4,6 @@
 # Cargo.lock is typically not committed for library crates
 # to allow downstream users to use their own dependency resolution
 Cargo.lock
+
+# Hidden configs
+.*/
